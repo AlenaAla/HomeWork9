@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class ManageUserPage extends AbstractPage{
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//table[@class='FormTable']//td[contains(text(), 'Username')]/../td[2]")
     private WebElement userNameLabel;
 
     public ManageUserPage(WebDriver driver) {

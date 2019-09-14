@@ -12,13 +12,15 @@ public class DemoTest {
     public static final String VALIDATION_MESSAGE = "Last Name is required.";
     public static final String CREATE_PERSON_PAGE_TITLE = "Create New Person";
     public static final String CREATE_NEW_PERSON_URL = "http://appellatecmsmssql.demo.int.thomsonreuters.com/ctrack/actor/person.do";
+    private String newUserEmail = "lena@mail.ru";
 
     private Steps steps;
 
 
-private String generateRandomName()
+
+    private String generateRandomName()
 {
-    return RandomStringUtils.random(5);
+    return RandomStringUtils.randomAlphanumeric(5);
 }
 
     @BeforeMethod(description = "init browser")
@@ -61,8 +63,8 @@ private String generateRandomName()
     public void userCanBeCreated(){
         steps.loginCMS(USER_NAME, USER_PASSWORD);
         String randomName = generateRandomName();
-        steps.createNewUser(randomName);
-        steps.verifyUserName(randomName);
+        steps.createNewUser(randomName, newUserEmail);
+        Assert.assertTrue(steps.verifyUserName(randomName));
     }
 
      /*@AfterMethod(description = "close browser")

@@ -2,8 +2,6 @@ package com.epam.taf.pages;
 
 
 
-import org.apache.commons.lang.RandomStringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,7 +43,13 @@ public class CreateNewUserPage extends AbstractPage {
     @FindBy(name="courtIDs")
     private  WebElement courts;
 
-   // private String randomUser= RandomStringUtils.random(5);
+    @FindBy (id="email")
+    private WebElement email;
+
+    @FindBy (xpath = "//*[@value='Save']")
+    private WebElement saveUserButton;
+
+    // private String randomUser= RandomStringUtils.random(5);
 
     public CreateNewUserPage(WebDriver driver) {
         super(driver);
@@ -59,7 +63,7 @@ public class CreateNewUserPage extends AbstractPage {
         return createUser("");
     }*/
 
-    public void createUser(String newUserName) {
+    public void createUser(String newUserName, String newUserEmail) {
         new Actions(driver).sendKeys(password, "Thomson!0").sendKeys(firstName, "Alena").sendKeys(lastName, "Alakayeva").build().perform();
 
         new Select(loginPageDropdown).selectByVisibleText("Main Case Search");
@@ -88,6 +92,9 @@ this.lastPersonName = userName;*/
        actions.build().perform();
 
         username.sendKeys(newUserName);
+        email.sendKeys(newUserEmail);
+        saveUserButton.click();
+
 
 //return userName;
     }

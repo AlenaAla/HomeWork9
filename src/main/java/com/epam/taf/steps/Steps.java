@@ -2,11 +2,7 @@ package com.epam.taf.steps;
 
 import com.epam.taf.pages.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
-import java.net.MalformedURLException;
-import java.net.URL;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class Steps {
@@ -29,11 +25,14 @@ public class Steps {
 
     public void initBrowser() {
 
-        try{
+            this.driver = new ChromeDriver();
+
+
+       /* try{
         driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome());
         } catch (MalformedURLException e){
             e.printStackTrace();
-        }
+        }*/
     }
 
     public void closeBrowser() {
@@ -85,10 +84,10 @@ public class Steps {
         homePage.openEntityManagementViaTopMenu();
     }
 
-    public void createNewUser(String newUserName) {
+    public void createNewUser(String newUserName, String newUserEmail) {
         CreateNewUserPage createNewUserPage = new CreateNewUserPage(driver);
         createNewUserPage.openPage();
-        createNewUserPage.createUser(newUserName);
+        createNewUserPage.createUser(newUserName, newUserEmail);
 
     }
 
