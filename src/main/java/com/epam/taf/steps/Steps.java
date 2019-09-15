@@ -1,17 +1,18 @@
 package com.epam.taf.steps;
 
+import com.epam.taf.driver.DriverSingleton;
+import com.epam.taf.model.UserForLogin;
 import com.epam.taf.pages.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class Steps {
-    private WebDriver driver;
+    protected WebDriver driver;
 
-    public void loginCMS(String userName, String userPassword) {
+    public void loginCMS(UserForLogin userForLogin) {
         LoginPage page = new LoginPage(driver);
         page.openPage();
-        page.login(userName, userPassword);
+        page.login(userForLogin);
     }
 
     public boolean isUserLoggedIn(String fullName) {
@@ -25,18 +26,12 @@ public class Steps {
 
     public void initBrowser() {
 
-            this.driver = new ChromeDriver();
+        driver = DriverSingleton.getDriver();
 
-
-       /* try{
-        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome());
-        } catch (MalformedURLException e){
-            e.printStackTrace();
-        }*/
     }
 
     public void closeBrowser() {
-        this.driver.close();
+        DriverSingleton.closeDriver();
     }
 
 

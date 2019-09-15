@@ -30,7 +30,6 @@ public class CreateNewUserPage extends AbstractPage {
 
     @FindBy(name="loginPage")
     private  WebElement loginPageDropdown;
-    //private  WebElement loginPageDropdown;
 
     //@FindBy(xpath = "//option[contains(text(), 'Main Case Search')]")
     //private WebElement mainCaseSearch;
@@ -49,7 +48,6 @@ public class CreateNewUserPage extends AbstractPage {
     @FindBy (xpath = "//*[@value='Save']")
     private WebElement saveUserButton;
 
-    // private String randomUser= RandomStringUtils.random(5);
 
     public CreateNewUserPage(WebDriver driver) {
         super(driver);
@@ -69,7 +67,7 @@ public class CreateNewUserPage extends AbstractPage {
         new Select(loginPageDropdown).selectByVisibleText("Main Case Search");
 
 /*String userName = newUserName.isEmpty()?RandomStringUtils.random(5):newUserName;
-this.lastPersonName = userName;*/
+this.lastUserName = userName;*/
 
 
         List<WebElement> courtsOptions = new Select(courts).getOptions();

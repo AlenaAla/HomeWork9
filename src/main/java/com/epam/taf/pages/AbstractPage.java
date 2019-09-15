@@ -10,12 +10,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class AbstractPage {
     protected WebDriver driver;
 
+    //protected abstract AbstractPage openPage();// module#9
+
     private static final int DEFAULT_TIMEOUT = 5;
 
-    public AbstractPage(WebDriver driver) {
+    protected AbstractPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(this.driver, this);
+        PageFactory.initElements(this.driver, this);//from 2015
     }
+
+
 
     protected void waitForElementVisible1(WebElement webElement) {
         new WebDriverWait(driver, DEFAULT_TIMEOUT).until(ExpectedConditions.visibilityOfAllElements(webElement));
@@ -24,9 +28,6 @@ public class AbstractPage {
         new WebDriverWait(driver, DEFAULT_TIMEOUT).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
-    protected void waitForElementEnabled(By locator) {
-        new WebDriverWait(driver, DEFAULT_TIMEOUT).until(ExpectedConditions.elementToBeSelected(locator));
-    }
 
 
 }

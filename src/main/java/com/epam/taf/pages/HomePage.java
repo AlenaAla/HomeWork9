@@ -21,9 +21,6 @@ public class HomePage extends AbstractPage {
     private WebElement userAdminMenuUnderTopMenu;//1-st option
 
 
-   // private static final By ENTITY_MANAGEMENT_ITEM = By.xpath("//a[@href='/ctrack/admin/menuUserAdmin.jsp?action=readonly'][@onclick='menuHeaderClose();']");//2-nd option
-
-
     public HomePage(WebDriver driver) {
         super(driver);
     }
@@ -35,17 +32,11 @@ public class HomePage extends AbstractPage {
     public void openEntityManagementViaTopMenu() {
 
 
-        new Actions(driver).moveToElement(administrativeTopMenu).perform();//for both 1-st and 2-nd options
-        waitForElementVisible1(userAdminMenuUnderTopMenu);//1-nd option
+        new Actions(driver).moveToElement(administrativeTopMenu).perform();
+        waitForElementVisible1(userAdminMenuUnderTopMenu);
 
-        //waitForElementVisible2(ENTITY_MANAGEMENT_ITEM);//2-nd option
+        userAdminMenuUnderTopMenu.click();
 
-        userAdminMenuUnderTopMenu.click();//1-st option
-
-        //driver.findElement(ENTITY_MANAGEMENT_ITEM).click();//2-nd option
-
-        //new Actions(driver).moveToElement(driver.findElement(ENTITY_MANAGEMENT_ITEM)).build().perform();
-        //new Actions(driver).moveToElement(administrativeTopMenu).click(userAdminMenuUnderTopMenu).build().perform();//does not work without wait
 
           }
 

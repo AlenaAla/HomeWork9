@@ -1,11 +1,15 @@
 package com.epam.taf.pages;
 
+import com.epam.taf.model.UserForLogin;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends AbstractPage {
 
+    private final Logger logger = LogManager.getRootLogger();
     private static final String URL = "http://appellatecmsmssql.demo.int.thomsonreuters.com";
 
     @FindBy(name = "userName")
@@ -23,11 +27,13 @@ public class LoginPage extends AbstractPage {
 
     public void openPage() {
         driver.get(URL);
+        logger.info("Login page opened");;
     }
 
-    public void login(String userName, String userPassword) {
-        loginField.sendKeys(userName);
-        passwordField.sendKeys(userPassword);
+    public void login(UserForLogin userForLogin) {
+        loginField.sendKeys(userForLogin.getUsername());
+        passwordField.sendKeys(userForLogin.getPassword());
         loginButton.click();
+        logger.info("Login is performing");
     }
 }

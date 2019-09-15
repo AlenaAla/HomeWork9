@@ -1,12 +1,15 @@
 package com.epam.taf.steps;
 
-import org.apache.commons.lang.RandomStringUtils;
+import com.epam.taf.model.UserForLogin;
+import com.epam.taf.service.UserForLoginCreator;
+import com.epam.taf.util.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class DemoTest {
-    private static final String USER_NAME = "clerk1";
-    private static final String USER_PASSWORD = "Thomson!0";
+
+
+public class DemoTest extends CommonConditions{
+
     private static final String FULL_NAME = "Clerk Court";
     private static final String PERSON_LAST_NAME = "Alena";
     public static final String VALIDATION_MESSAGE = "Last Name is required.";
@@ -14,57 +17,54 @@ public class DemoTest {
     public static final String CREATE_NEW_PERSON_URL = "http://appellatecmsmssql.demo.int.thomsonreuters.com/ctrack/actor/person.do";
     private String newUserEmail = "lena@mail.ru";
 
-    private Steps steps;
-
-
-
-    private String generateRandomName()
-{
-    return RandomStringUtils.randomAlphanumeric(5);
-}
-
-    @BeforeMethod(description = "init browser")
-    public void setUp() {
-        steps = new Steps();
-        steps.initBrowser();
-    }
 
     @Test
     public void userCanLogin() {
-
-        steps.loginCMS(USER_NAME, USER_PASSWORD);
+        UserForLogin testUser = UserForLoginCreator.withCredentialsFromProperty();
+        steps.loginCMS(testUser);
         Assert.assertTrue(steps.isUserLoggedIn(FULL_NAME));
     }
 
-    @Test
-    public void userCanCreateNewPerson() {
-        steps.loginCMS(USER_NAME, USER_PASSWORD);
-        String personName = steps.createNewPerson("Alena");
-        Assert.assertTrue(steps.isPersonCreated(PERSON_LAST_NAME));
-    }
-
-    @Test
+   /* @Test
     public void createNewPersonValidation(){
-        steps.loginCMS(USER_NAME, USER_PASSWORD);
+        UserForLogin testUser = UserForLoginCreator.withCredentialsFromProperty();
+        steps.loginCMS(testUser);
         steps.saveNewPersonWithoutRequiredField();
-        //steps.isUserStayedOnCreatePersonPage();
         Assert.assertTrue(steps.isValidationMessageReturns(VALIDATION_MESSAGE));
         Assert.assertTrue(steps.isUserStayedOnCreateNewPersonURL(CREATE_NEW_PERSON_URL), "...");
         Assert.assertTrue(steps.isPageTitleNotChanged(CREATE_PERSON_PAGE_TITLE));
     }
 
     @Test
+    public void userCanCreateNewPerson() {
+        UserForLogin testUser = UserForLoginCreator.withCredentialsFromProperty();
+        steps.loginCMS(testUser);
+        String personName = steps.createNewPerson("Alena");
+        Assert.assertTrue(steps.isPersonCreated(PERSON_LAST_NAME));
+    }*/
+
+    @Test
     public void userCanReachToEntityManagementViaTopMenu(){
-        steps.loginCMS(USER_NAME,USER_PASSWORD);
+        UserForLogin testUser = UserForLoginCreator.withCredentialsFromProperty();
+        steps.loginCMS(testUser);
         steps.navigateToEntityManagementViaTopMenu();
     }
 
     @Test
     public void userCanBeCreated(){
-        steps.loginCMS(USER_NAME, USER_PASSWORD);
-        String randomName = generateRandomName();
+        UserForLogin testUser = UserForLoginCreator.withCredentialsFromProperty();
+        steps.loginCMS(testUser);
+        String randomName = StringUtils.generateRandomName();
         steps.createNewUser(randomName, newUserEmail);
         Assert.assertTrue(steps.verifyUserName(randomName));
+
+       /* @Test
+        public void userCanBeCreated(){
+            UserForLogin testUser = UserForLoginCreator.withCredentialsFromProperty();
+            steps.loginCMS(testUser);
+            String randomName = StringUtils.generateRandomName();
+            steps.createNewUser(randomName, newUserEmail);
+            Assert.assertTrue(steps.verifyUserName(randomName));//previous version*/
     }
 
      /*@AfterMethod(description = "close browser")
