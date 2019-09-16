@@ -1,5 +1,6 @@
 package com.epam.taf.pages;
 
+import com.epam.taf.driver.DriverSingleton;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,8 +15,8 @@ public class AbstractPage {
 
     private static final int DEFAULT_TIMEOUT = 5;
 
-    protected AbstractPage(WebDriver driver) {
-        this.driver = driver;
+    protected AbstractPage() {
+        this.driver = DriverSingleton.getDriver();
         PageFactory.initElements(this.driver, this);//from 2015
     }
 

@@ -1,6 +1,6 @@
 package com.epam.taf.pages;
 
-import com.epam.taf.model.UserForLogin;
+import com.epam.taf.driver.DriverSingleton;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -13,16 +13,16 @@ public class LoginPage extends AbstractPage {
     private static final String URL = "http://appellatecmsmssql.demo.int.thomsonreuters.com";
 
     @FindBy(name = "userName")
-    private WebElement loginField;
+    public WebElement loginField;
 
     @FindBy(name = "password")
-    private WebElement passwordField;
+    public WebElement passwordField;
 
     @FindBy(name = "submit")
-    private WebElement loginButton;
+    public WebElement loginButton;
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
+    public LoginPage() {
+        super();
     }
 
     public void openPage() {
@@ -30,10 +30,5 @@ public class LoginPage extends AbstractPage {
         logger.info("Login page opened");;
     }
 
-    public void login(UserForLogin userForLogin) {
-        loginField.sendKeys(userForLogin.getUsername());
-        passwordField.sendKeys(userForLogin.getPassword());
-        loginButton.click();
-        logger.info("Login is performing");
-    }
+
 }

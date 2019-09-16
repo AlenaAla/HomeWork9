@@ -1,22 +1,30 @@
 package com.epam.taf.steps;
 
 import com.epam.taf.driver.DriverSingleton;
-import com.epam.taf.model.UserForLogin;
+import com.epam.taf.model.User;
 import com.epam.taf.pages.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 
 public class Steps {
     protected WebDriver driver;
+    private final Logger logger = LogManager.getRootLogger();
 
-    public void loginCMS(UserForLogin userForLogin) {
+
+
+    public  void loginCMS(User userForLogin) {
         LoginPage page = new LoginPage(driver);
         page.openPage();
-        page.login(userForLogin);
-    }
+        page.loginField.sendKeys(userForLogin.getUsername());
+        page.passwordField.sendKeys(userForLogin.getPassword());
+        page.loginButton.click();
+        logger.info("Login is performing");
+     }
 
-    public boolean isUserLoggedIn(String fullName) {
-        HomePage homePage = new HomePage(driver);
+    public static boolean isUserLoggedIn(String fullName) {
+        HomePage homePage = new HomePage();
         String actualUserName = homePage.getLoggedInUserName();
         return actualUserName.equals(fullName);
     }

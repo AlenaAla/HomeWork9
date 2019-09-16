@@ -10,18 +10,20 @@ import org.testng.annotations.Listeners;
 
 @Listeners({TestListener.class})
 public class CommonConditions {
-    protected WebDriver driver;
+    //protected WebDriver driver;
     protected Steps steps;
 
 
-    @BeforeMethod(description = "init browser")//added within module9
+    //@BeforeMethod(description = "init browser")//added within module9
     public void setUp() {
-        steps = new Steps();
-        steps.initBrowser();
+        // driver = DriverSingleton.getDriver();
+        //steps = new Steps();
+        //steps.initBrowser();
     }
 
-    //@AfterMethod (alwaysRun = true)
-    public void stopBrowser(){
-        steps.closeBrowser();}
+    @AfterMethod(alwaysRun = true)
+    public void stopBrowser() {
+        DriverSingleton.closeDriver();
 
+    }
 }

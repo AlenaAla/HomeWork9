@@ -2,16 +2,18 @@ package com.epam.taf.model;
 
 import java.util.Objects;
 
-public class UserForLogin {
+public class User {
 
 
     private String username;
     private String password;
+    private String lastName;
 
 
-    public UserForLogin(String username, String password) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
+
     }
 
     public String getUsername() {
@@ -41,8 +43,8 @@ public class UserForLogin {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UserForLogin)) return false;
-        UserForLogin user = (UserForLogin) o;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
         return Objects.equals(getUsername(), user.getUsername()) &&
                 Objects.equals(getPassword(), user.getPassword());
     }
