@@ -9,8 +9,8 @@ public class ManageUserPage extends AbstractPage{
     @FindBy(xpath = "//table[@class='FormTable']//td[contains(text(), 'Username')]/../td[2]")
     private WebElement userNameLabel;
 
-    public ManageUserPage(WebDriver driver) {
-        super(driver);
+    public ManageUserPage() {
+        super();
     }
 
     public String getUserName() {

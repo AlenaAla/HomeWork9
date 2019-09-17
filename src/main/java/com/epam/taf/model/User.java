@@ -7,13 +7,31 @@ public class User {
 
     private String username;
     private String password;
+    private String firstName;
     private String lastName;
+
 
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
 
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUsername() {
@@ -37,6 +55,8 @@ public class User {
         return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 
@@ -46,11 +66,14 @@ public class User {
         if (!(o instanceof User)) return false;
         User user = (User) o;
         return Objects.equals(getUsername(), user.getUsername()) &&
-                Objects.equals(getPassword(), user.getPassword());
+                Objects.equals(getPassword(), user.getPassword()) &&
+                Objects.equals(getFirstName(), user.getFirstName()) &&
+                Objects.equals(getLastName(), user.getLastName())
+                ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUsername(), getPassword());
+        return Objects.hash(getUsername(), getPassword(),getFirstName(),getLastName() );
     }
 }

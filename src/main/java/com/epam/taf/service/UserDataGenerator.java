@@ -3,7 +3,7 @@ package com.epam.taf.service;
 import com.epam.taf.model.User;
 import com.epam.taf.util.StringUtils;
 
-public class UserForLoginCreator {
+public class UserDataGenerator {
 
 
     public static final String USER_NAME = "testdata.user.name";
@@ -22,4 +22,6 @@ public class UserForLoginCreator {
         return new User(name, password );
     }
 
+    /*String userName = newUserName.isEmpty()?RandomStringUtils.random(5):newUserName;
+this.lastUserName = userName;*/
 }

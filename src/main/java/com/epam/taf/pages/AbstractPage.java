@@ -21,8 +21,7 @@ public class AbstractPage {
     }
 
 
-
-    protected void waitForElementVisible1(WebElement webElement) {
+    public void waitForElementVisible1(WebElement webElement) {
         new WebDriverWait(driver, DEFAULT_TIMEOUT).until(ExpectedConditions.visibilityOfAllElements(webElement));
     }
     protected void waitForElementVisible2(By locator) {

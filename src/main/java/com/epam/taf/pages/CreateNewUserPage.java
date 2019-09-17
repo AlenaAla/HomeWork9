@@ -17,83 +17,46 @@ public class CreateNewUserPage extends AbstractPage {
     public static final String URL = "http://appellatecmsmssql.demo.int.thomsonreuters.com/ctrack/admin/appuser.do?action=create";
 
     @FindBy(id ="userNm")
-    private WebElement username;
+    public WebElement username;
 
     @FindBy(id ="password")
-    private WebElement password;
+    public WebElement password;
 
     @FindBy(id ="firstNm")
-    private WebElement firstName;
+    public WebElement firstName;
 
     @FindBy(id="lastNm")
-    private WebElement lastName;
+    public WebElement lastName;
 
     @FindBy(name="loginPage")
-    private  WebElement loginPageDropdown;
+    public  WebElement loginPageDropdown;
 
     //@FindBy(xpath = "//option[contains(text(), 'Main Case Search')]")
-    //private WebElement mainCaseSearch;
+    //public WebElement mainCaseSearch;
 
     //public static final By MAIN_CASE_SEARCH_LOCATOR = By.xpath("//option[contains(text(), 'Main Case Search')]");
 
     @FindBy(name ="submitValue")
-    private WebElement saveButton;
+    public WebElement saveButton;
 
     @FindBy(name="courtIDs")
-    private  WebElement courts;
+    public  WebElement courts;
 
     @FindBy (id="email")
-    private WebElement email;
+    public WebElement email;
 
     @FindBy (xpath = "//*[@value='Save']")
-    private WebElement saveUserButton;
+    public WebElement saveUserButton;
 
 
-    public CreateNewUserPage(WebDriver driver) {
-        super(driver);
+    public CreateNewUserPage() {
+        super();
     }
 
     public void openPage() {
         driver.get(URL);
     }
-   /* public String createUser()
-    {
-        return createUser("");
-    }*/
-
-    public void createUser(String newUserName, String newUserEmail) {
-        new Actions(driver).sendKeys(password, "Thomson!0").sendKeys(firstName, "Alena").sendKeys(lastName, "Alakayeva").build().perform();
-
-        new Select(loginPageDropdown).selectByVisibleText("Main Case Search");
-
-/*String userName = newUserName.isEmpty()?RandomStringUtils.random(5):newUserName;
-this.lastUserName = userName;*/
 
 
-        List<WebElement> courtsOptions = new Select(courts).getOptions();
 
-        ArrayList<String> expectedOptions = new ArrayList<String>();
-        expectedOptions.add("Court of Appeals");
-        expectedOptions.add("Supreme Court");
-        Actions actions = new Actions(driver);
-
-       for (int i = 0; i < courtsOptions.size(); i++)
-       {
-           WebElement optionElement = courtsOptions.get(i);
-           String actualOption = optionElement.getText();
-           if(expectedOptions.contains(actualOption))
-           {
-               actions.keyDown(Keys.CONTROL).click(optionElement).keyUp(Keys.CONTROL);
-           }
-       }
-
-       actions.build().perform();
-
-        username.sendKeys(newUserName);
-        email.sendKeys(newUserEmail);
-        saveUserButton.click();
-
-
-//return userName;
-    }
 }

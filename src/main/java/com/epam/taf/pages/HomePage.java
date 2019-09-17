@@ -10,35 +10,26 @@ import org.openqa.selenium.support.FindBy;
 public class HomePage extends AbstractPage {
 
     @FindBy(xpath = "//div[@class='header-username']")
-    private WebElement fullUserNameLabel;
+    public WebElement fullUserNameLabel;
 
     //@FindBy(xpath = "//div[@class='menu-header-item ui-state-default']/a[contains(text(),'Administrative')]")
     @FindBy (xpath = "//a[@href='/ctrack/menu.do?menuHeaderID=4']")
-    private WebElement administrativeTopMenu;
+    public  WebElement administrativeTopMenu;
 
 
     @FindBy (xpath = "//a[@href='/ctrack/admin/menuUserAdmin.jsp?action=readonly'][@onclick='menuHeaderClose();']")
-    private WebElement userAdminMenuUnderTopMenu;//1-st option
+    public WebElement userAdminMenuUnderTopMenu;//1-st option
 
 
-    public HomePage(WebDriver driver) {
-        super(driver);
+    public HomePage() {
+        super();
     }
 
     public String getLoggedInUserName() {
         return fullUserNameLabel.getText();
     }
 
-    public void openEntityManagementViaTopMenu() {
 
-
-        new Actions(driver).moveToElement(administrativeTopMenu).perform();
-        waitForElementVisible1(userAdminMenuUnderTopMenu);
-
-        userAdminMenuUnderTopMenu.click();
-
-
-          }
 
 
     }
