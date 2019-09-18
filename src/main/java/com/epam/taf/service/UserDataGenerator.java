@@ -15,7 +15,7 @@ public class UserDataGenerator {
     }
 
     public static User createRandomUser(){
-        return new User(StringUtils.generateRandomString(), StringUtils.generateRandomString() );
+        return new User(StringUtils.generateRandomString(), StringUtils.generateRandomString(), StringUtils.generateRandomString(),StringUtils.generateRandomString() );
     }
 
     public static User createUser(String name, String password){

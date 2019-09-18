@@ -43,13 +43,17 @@ public class Steps {
         new Actions(DriverSingleton.getDriver()).moveToElement(homePage.administrativeTopMenu).perform();
         homePage.waitForElementVisible1(homePage.userAdminMenuUnderTopMenu);
         homePage.userAdminMenuUnderTopMenu.click();
+        logger.info("User Admin menu is clicked");
     }
 
     public static void createNewUser(User randomUser) {
         CreateNewUserPage createNewUserPage = new CreateNewUserPage();
         createNewUserPage.openPage();
+        logger.info("Opening Create New App User page");
         new Actions(DriverSingleton.getDriver()).sendKeys(createNewUserPage.password, randomUser.getPassword() ).sendKeys(createNewUserPage.firstName, randomUser.getFirstName()).sendKeys(createNewUserPage.lastName, randomUser.getLastName()).build().perform();
+        logger.info("Filling in Password, Fisrt Name, Last Name fields");
         new Select(createNewUserPage.loginPageDropdown).selectByVisibleText("Main Case Search");
+        logger.info("Selecting value for  Login dropdown");
         List<WebElement> courtsOptions = new Select(createNewUserPage.courts).getOptions();
 
         ArrayList<String> expectedOptions = new ArrayList<String>();
@@ -68,18 +72,25 @@ public class Steps {
         }
 
         actions.build().perform();
+        logger.info("Selecting both options from Courts dropdown");
 
         createNewUserPage.username.sendKeys(randomUser.getUsername());
+        logger.info("Filling in UserName fields");
         createNewUserPage.email.sendKeys(randomUser.getUsername()+ "@thomsonreuters.com");
+        logger.info("Filling in email fields");
         createNewUserPage.saveUserButton.click();
+        logger.info("clicking Save button");
 
 
     }
 
-    public static boolean verifyUserName(String randomName) {
+    public static boolean verifyUserName(String randomUserName) {
         ManageUserPage manageUserPage = new ManageUserPage();
         String actualUserName = manageUserPage.getUserName();
-        return actualUserName.equals(randomName);
+        System.out.println(actualUserName);
+        logger.info("Getting actual UserName");
+        return actualUserName.equals(randomUserName);
+
     }
 
 

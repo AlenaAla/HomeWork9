@@ -36,15 +36,8 @@ public class DemoTest extends CommonConditions{
         String randomName = StringUtils.generateRandomString();
         User randomUser = UserDataGenerator.createRandomUser();
         Steps.createNewUser(randomUser);
-        Assert.assertTrue(Steps.verifyUserName(randomName));
+        Assert.assertTrue(Steps.verifyUserName(randomUser.getUsername()));
 
-       /* @Test
-        public void userCanBeCreated(){
-            User testUser = UserDataGenerator.withCredentialsFromProperty();
-            Steps.loginCMS(testUser);
-            String randomName = StringUtils.generateRandomString();
-            Steps.createNewUser(randomName, newUserEmail);
-            Assert.assertTrue(Steps.verifyUserName(randomName));//previous version*/
     }
 
 
