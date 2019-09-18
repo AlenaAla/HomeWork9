@@ -82,10 +82,12 @@ public class Steps {
         logger.info("clicking Save button");
 
 
+
     }
 
     public static boolean verifyUserName(String randomUserName) {
         ManageUserPage manageUserPage = new ManageUserPage();
+
         String actualUserName = manageUserPage.getUserName();
         System.out.println(actualUserName);
         logger.info("Getting actual UserName");

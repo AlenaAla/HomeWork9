@@ -36,7 +36,9 @@ public class DemoTest extends CommonConditions{
         String randomName = StringUtils.generateRandomString();
         User randomUser = UserDataGenerator.createRandomUser();
         Steps.createNewUser(randomUser);
-        Assert.assertTrue(Steps.verifyUserName(randomUser.getUsername()));
+        String b = randomUser.getUsername();
+        boolean a = Steps.verifyUserName(b);
+        Assert.assertTrue(a);
 
     }
 

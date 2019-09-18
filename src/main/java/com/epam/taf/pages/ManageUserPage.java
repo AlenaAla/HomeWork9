@@ -13,7 +13,10 @@ public class ManageUserPage extends AbstractPage{
         super();
     }
 
+
     public String getUserName() {
+        waitForElementVisible1(userNameLabel);
+
         return userNameLabel.getText();
     }
 }
