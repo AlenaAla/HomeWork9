@@ -1,4 +1,4 @@
-package com.epam.taf;
+package com.epam.test;
 
 import com.epam.taf.model.User;
 import com.epam.taf.service.UserDataGenerator;

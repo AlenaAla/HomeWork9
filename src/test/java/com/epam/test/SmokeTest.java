@@ -1,9 +1,8 @@
-package com.epam.taf;
+package com.epam.test;
 
 import com.epam.taf.model.User;
 import com.epam.taf.service.UserDataGenerator;
 import com.epam.taf.steps.Steps;
-import org.testng.Assert;
 import org.testng.annotations.*;
 
 

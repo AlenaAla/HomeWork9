@@ -1,4 +1,4 @@
-package com.epam.taf;
+package com.epam.test;
 
 import com.epam.taf.driver.DriverSingleton;
 import com.epam.taf.util.TestListener;

@@ -31,11 +31,6 @@ public class CreateNewUserPage extends AbstractPage {
     @FindBy(name="loginPage")
     public  WebElement loginPageDropdown;
 
-    //@FindBy(xpath = "//option[contains(text(), 'Main Case Search')]")
-    //public WebElement mainCaseSearch;
-
-    //public static final By MAIN_CASE_SEARCH_LOCATOR = By.xpath("//option[contains(text(), 'Main Case Search')]");
-
     @FindBy(name ="submitValue")
     public WebElement saveButton;
 
